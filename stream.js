@@ -1,23 +1,46 @@
 'use strict'
 
+//从流中读数据
 var fs = require('fs')
 
-var rs = fs.createReadStream('hello.js', 'utf-8');
+var readStream = fs.createReadStream('hello.js', 'utf-8');
 
-rs.on('data', function (chunk){
+readStream.on('data', function (chunk){
     console.log('DATA:\n'+ chunk);
 });
 
-rs.on('end', function () {
+readStream.on('end', function () {
     console.log('END');
 });
 
-rs.on('error', function (err) {
+readStream.on('error', function (err) {
     console.log('ERROR: \n'+err);
 });
 
-var wsl = fs.createWriteStream("out.txt", "utf-8");
+//写入流
+var writerStream = fs.createWriteStream("out.txt", "utf-8");
 
+writerStream.write('data','UTF8');
+writerStream.end();
+writerStream.on('finish', function(){
+    console.log('finish');
+});
+writerStream.on('error', function(){
+    console,log('error');
+});
+//pipe管道流
 
-//pipe
+readStream.pipe(writerStream);
+
+//链式流
+var zlib = require('zlib');
+    //文件压缩
+fs.createReadStream('input.txt')
+    .pipe(zlib.createGzip())
+    .pipe(fs.createWriteStream('input.txt.gz'));
+
+    //文件解压
+fs.createReadStream('input.txt.gz')
+    .pipe(zlib.createGzip())
+    .pipe(fs.createWriteStream('input.txt'));
 
