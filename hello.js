@@ -14,3 +14,8 @@ function hello() {
 module.exports.greet = greet;
 
 module.exports.hello = hello;
+
+var server = require('./server');
+var router = require('./router');
+
+server.start(router.route)
