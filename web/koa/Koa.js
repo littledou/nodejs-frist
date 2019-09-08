@@ -6,11 +6,9 @@ const app = new Koa();
 // 	ctx.response.type = 'text/html';
 // 	ctx.response.body = '<h1> hello, koa2!</ha>';
 // });
-var sss = 'auiuihuh';
-console.log('${sss}');
 
 app.use(async(ctx, next)=>{
-	console.log('ctx.request.method+ ctx.request.url');
+	console.log('ctx.request.method:%s, ctx.request.url:%s',ctx.request.method, ctx.request.url);
 	await next();
 });
 
@@ -19,7 +17,7 @@ app.use(async(ctx, next)=>{
 	const start = new Date().getTime();
 	await next();
 	const ms = new Date().getTime() - start;
-	console.log('Time: ${{ms}} ms');
+	console.log('Time: %d ms', ms);
 });
 
 app.use(async(ctx, next)=>{
@@ -27,6 +25,8 @@ app.use(async(ctx, next)=>{
 	ctx.response.type = 'text/html';
 	ctx.response.body = '<h1> hello, Koa2!<h1>'
 });
+
+
 
 
 
