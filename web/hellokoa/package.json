@@ -1,0 +1,15 @@
+{
+	"name": "hellokoa",
+	"version": "1.0.0",
+	"main": "app.js",
+	"keywords": [
+		"koa",
+		"async"
+	],
+	"dependencies": {
+		"koa": "2.11.0",
+		"koa-body": "^4.1.1",
+		"koa-bodyparser": "4.2.1",
+		"koa-router": "7.4.0"
+	}
+}

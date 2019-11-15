@@ -10,7 +10,7 @@ app.use(async(ctx, next)=>{
 
 router.get('/hello/:name', async(ctx, next)=>{
 	var name = ctx.params.name;
-	ctx.response.body = '<h1> Hello, ${name}!</h1>';
+	ctx.response.body = ('<h1> Hello, %s!</h1>' , name);
 });
 
 router.get('/', async(ctx, next)=>{
